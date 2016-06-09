@@ -26,8 +26,18 @@ public class MongoDBApp {
 //        FindDocumentsFilteringForAField(collectionName, mongoDB);
 //        AnotherWayToFindDocumentFilteringForAField(collectionName, mongoDB);
 //        QueryByAFieldInAnEmbeddedDocument(collectionName, mongoDB);
-        QueryByAFieldInAnEmbeddedDocumentUsingFilters(collectionName, mongoDB);
+//        QueryByAFieldInAnEmbeddedDocumentUsingFilters(collectionName, mongoDB);
+//        QueryByAFieldInAnArray(collectionName, mongoDB);
 
+
+
+    }
+
+    private static void QueryByAFieldInAnArray(String collectionName, MongoDatabase mongoDB) {
+        System.out.println("Query by a field in an Array: ");
+        FindIterable<Document> documents = mongoDB.getCollection(collectionName).find(
+                new Document("grades.grade", "C"));
+        documents.forEach((Block<Document>) System.out::println);
     }
 
     private static void QueryByAFieldInAnEmbeddedDocumentUsingFilters(String collectionName, MongoDatabase mongoDB) {
