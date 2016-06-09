@@ -49,7 +49,11 @@ public class MongoOpsImp implements MongoOps {
                                 .append("score", 17)))
                 .append("name", "Iguanna2")
                 .append("lastName", "Crespo")
-                .append("restaurant_id", "41704620");
+                .append("restaurant_id", "41704620")
+                .append("user",
+                        new Document()
+                            .append("name", "David")
+                            .append("lastName", "Crespo"));
     }
 
     @Override

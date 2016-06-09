@@ -21,20 +21,47 @@ public class MongoDBApp {
 
         MongoDatabase mongoDB = mongoOps.connectToDB(dbName);
 
-        mongoOps.addItem(mongoDB, collectionName, mongoOps.createDocument());
+//        mongoOps.addItem(mongoDB, collectionName, mongoOps.createDocument());
+//        findAllDocumentsInCollection(collectionName, mongoOps, mongoDB);
+//        FindDocumentsFilteringForAField(collectionName, mongoDB);
+//        AnotherWayToFindDocumentFilteringForAField(collectionName, mongoDB);
+//        QueryByAFieldInAnEmbeddedDocument(collectionName, mongoDB);
+        QueryByAFieldInAnEmbeddedDocumentUsingFilters(collectionName, mongoDB);
 
-        System.out.println("Find all documents in the Collection: ");
-        FindIterable<Document> documents = mongoOps.findAllDocumentsInCollection(mongoDB, collectionName);
+    }
+
+    private static void QueryByAFieldInAnEmbeddedDocumentUsingFilters(String collectionName, MongoDatabase mongoDB) {
+        System.out.println("Query by a field in an Embedded document using Filters: ");
+        FindIterable<Document> documents = mongoDB.getCollection(collectionName).find(
+                eq("user.name", "David"));
         documents.forEach((Block<Document>) System.out::println);
+    }
 
-        System.out.println("Find only documentes where lastName is Crespo: ");
-        documents = mongoDB.getCollection(collectionName).find(new Document("lastName", "Crespo"));
+    private static void QueryByAFieldInAnEmbeddedDocument(String collectionName, MongoDatabase mongoDB) {
+        System.out.println("Query by a field in an Embedded document: ");
+        FindIterable<Document> documents = mongoDB.getCollection(collectionName).find(
+                new Document("user.name", "David"));
         documents.forEach((Block<Document>) System.out::println);
+    }
 
+    private static void AnotherWayToFindDocumentFilteringForAField(String collectionName, MongoDatabase mongoDB) {
+        FindIterable<Document> documents;
         System.out.println("Find only documentes where lastName is Crespo using Filters: ");
         documents = mongoDB.getCollection(collectionName).find(eq("name", "Iguanna"));
         documents.forEach((Block<Document>) System.out::println);
+    }
 
+    private static void FindDocumentsFilteringForAField(String collectionName, MongoDatabase mongoDB) {
+        FindIterable<Document> documents;
+        System.out.println("Find only documentes where lastName is Crespo: ");
+        documents = mongoDB.getCollection(collectionName).find(new Document("lastName", "Crespo"));
+        documents.forEach((Block<Document>) System.out::println);
+    }
+
+    private static void findAllDocumentsInCollection(String collectionName, MongoOps mongoOps, MongoDatabase mongoDB) {
+        System.out.println("Find all documents in the Collection: ");
+        FindIterable<Document> documents = mongoOps.findAllDocumentsInCollection(mongoDB, collectionName);
+        documents.forEach((Block<Document>) System.out::println);
     }
 
 }
