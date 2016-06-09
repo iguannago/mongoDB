@@ -19,7 +19,7 @@ public class MongoDBApp {
 
         MongoDatabase mongoDB = mongoOps.connectToDB(dbName);
 
-        mongoOps.addItem(mongoDB, collectionName, mongoOps.getDocument());
+        mongoOps.addItem(mongoDB, collectionName, mongoOps.createDocument());
 
         FindIterable<Document> documents = mongoOps.findAllDocumentsInCollection(mongoDB, collectionName);
         documents.forEach((Block<Document>) document -> {

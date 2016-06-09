@@ -28,7 +28,7 @@ public class MongoOpsImp implements MongoOps {
     }
 
     @Override
-    public Document getDocument() throws ParseException {
+    public Document createDocument() throws ParseException {
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.ENGLISH);
         return new Document("address",
                 new Document()

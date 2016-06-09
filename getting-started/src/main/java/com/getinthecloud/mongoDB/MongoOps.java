@@ -12,6 +12,6 @@ import java.text.ParseException;
 public interface MongoOps {
     MongoDatabase connectToDB(String databaseName);
     void addItem(MongoDatabase db, String collectionName, Document document);
-    Document getDocument() throws ParseException;
+    Document createDocument() throws ParseException;
     FindIterable<Document> findAllDocumentsInCollection(MongoDatabase mongoDatabase, String collectionName);
 }
