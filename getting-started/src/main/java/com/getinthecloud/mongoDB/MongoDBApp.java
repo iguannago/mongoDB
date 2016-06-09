@@ -7,6 +7,8 @@ import org.bson.Document;
 
 import java.text.ParseException;
 
+import static com.mongodb.client.model.Filters.eq;
+
 /**
  * Created by davicres on 08/03/2016.
  */
@@ -27,6 +29,10 @@ public class MongoDBApp {
 
         System.out.println("Find only documentes where lastName is Crespo: ");
         documents = mongoDB.getCollection(collectionName).find(new Document("lastName", "Crespo"));
+        documents.forEach((Block<Document>) System.out::println);
+
+        System.out.println("Find only documentes where lastName is Crespo using Filters: ");
+        documents = mongoDB.getCollection(collectionName).find(eq("name", "Iguanna"));
         documents.forEach((Block<Document>) System.out::println);
 
     }
