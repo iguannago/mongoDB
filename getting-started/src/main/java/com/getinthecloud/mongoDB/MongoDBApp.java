@@ -22,9 +22,9 @@ public class MongoDBApp {
         mongoOps.addItem(mongoDB, collectionName, mongoOps.createDocument());
 
         FindIterable<Document> documents = mongoOps.findAllDocumentsInCollection(mongoDB, collectionName);
-        documents.forEach((Block<Document>) document -> {
-            System.out.println(document);
-        });
+        documents.forEach((Block<Document>) System.out::println);
+
+
     }
 
 }
