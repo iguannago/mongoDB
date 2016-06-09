@@ -16,8 +16,6 @@ public class MongoDBApp {
 
         MongoDatabase mongoDB = mongoOps.connectToDB(dbName);
 
-
-
     }
 
 

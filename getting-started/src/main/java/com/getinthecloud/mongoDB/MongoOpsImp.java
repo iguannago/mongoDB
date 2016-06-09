@@ -66,14 +66,22 @@ public class MongoOpsImp implements MongoOps {
     }
 
     @Override
-    public void QueryFieldByAValueGreaterThan(String collectionName, MongoDatabase mongoDB) {
+    public void queryFieldByAValueGreaterThan(String collectionName, MongoDatabase mongoDB) {
         System.out.println("query docuement by a field with value grater than");
         FindIterable<Document> documents = mongoDB.getCollection(collectionName).find(gt("grades.score", 60));
         documents.forEach((Block<Document>) System.out::println);
     }
 
     @Override
-    public void QueryByAFieldInAnArray(String collectionName, MongoDatabase mongoDB) {
+    public void queryDocumentsByFieldWithLogialAND(String collectionName, MongoDatabase mongoDB) {
+        System.out.println("Query documents by fields using logical AND");
+        FindIterable<Document> documents = mongoDB.getCollection(collectionName).find(
+                new Document("name", "La Rubia Restaurant").append("address.zipcode", "11385"));
+        documents.forEach((Block<Document>) System.out::println);
+    }
+
+    @Override
+    public void queryByAFieldInAnArray(String collectionName, MongoDatabase mongoDB) {
         System.out.println("Query by a field in an Array: ");
         FindIterable<Document> documents = mongoDB.getCollection(collectionName).find(
                 new Document("grades.grade", "C"));
@@ -81,7 +89,7 @@ public class MongoOpsImp implements MongoOps {
     }
 
     @Override
-    public void QueryByAFieldInAnEmbeddedDocumentUsingFilters(String collectionName, MongoDatabase mongoDB) {
+    public void queryByAFieldInAnEmbeddedDocumentUsingFilters(String collectionName, MongoDatabase mongoDB) {
         System.out.println("Query by a field in an Embedded document using Filters: ");
         FindIterable<Document> documents = mongoDB.getCollection(collectionName).find(
                 eq("user.name", "David"));
@@ -89,7 +97,7 @@ public class MongoOpsImp implements MongoOps {
     }
 
     @Override
-    public void QueryByAFieldInAnEmbeddedDocument(String collectionName, MongoDatabase mongoDB) {
+    public void queryByAFieldInAnEmbeddedDocument(String collectionName, MongoDatabase mongoDB) {
         System.out.println("Query by a field in an Embedded document: ");
         FindIterable<Document> documents = mongoDB.getCollection(collectionName).find(
                 new Document("user.name", "David"));
@@ -97,7 +105,7 @@ public class MongoOpsImp implements MongoOps {
     }
 
     @Override
-    public void AnotherWayToFindDocumentFilteringForAField(String collectionName, MongoDatabase mongoDB) {
+    public void anotherWayToFindDocumentFilteringForAField(String collectionName, MongoDatabase mongoDB) {
         FindIterable<Document> documents;
         System.out.println("Find only documentes where lastName is Crespo using Filters: ");
         documents = mongoDB.getCollection(collectionName).find(eq("name", "Iguanna"));
@@ -105,7 +113,7 @@ public class MongoOpsImp implements MongoOps {
     }
 
     @Override
-    public void FindDocumentsFilteringForAField(String collectionName, MongoDatabase mongoDB) {
+    public void findDocumentsFilteringForAField(String collectionName, MongoDatabase mongoDB) {
         FindIterable<Document> documents;
         System.out.println("Find only documentes where lastName is Crespo: ");
         documents = mongoDB.getCollection(collectionName).find(new Document("lastName", "Crespo"));
