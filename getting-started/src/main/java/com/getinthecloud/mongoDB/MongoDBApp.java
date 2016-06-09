@@ -21,9 +21,13 @@ public class MongoDBApp {
 
         mongoOps.addItem(mongoDB, collectionName, mongoOps.createDocument());
 
+        System.out.println("Find all documents in the Collection: ");
         FindIterable<Document> documents = mongoOps.findAllDocumentsInCollection(mongoDB, collectionName);
         documents.forEach((Block<Document>) System.out::println);
 
+        System.out.println("Find only documentes where lastName is Crespo: ");
+        documents = mongoDB.getCollection(collectionName).find(new Document("lastName", "Crespo"));
+        documents.forEach((Block<Document>) System.out::println);
 
     }
 
