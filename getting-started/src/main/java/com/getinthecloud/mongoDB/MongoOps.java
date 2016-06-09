@@ -21,5 +21,6 @@ public interface MongoOps {
     void queryByAFieldInAnArray(String collectionName, MongoDatabase mongoDB);
     void queryFieldByAValueGreaterThan(String collectionName, MongoDatabase mongoDB);
     void queryDocumentsByFieldWithLogialAND(String collectionName, MongoDatabase mongoDB);
-    void queryDocumentsByFieldWithLogialANDwithFilters(String collectionName, MongoDatabase mongoDB);
+    void queryDocumentsByFieldWithLogicalANDwithFilters(String collectionName, MongoDatabase mongoDB);
+    void queryDocumentsByFieldWithLogicalORWithFilters(String collectionName, MongoDatabase mongoDB);
 }
