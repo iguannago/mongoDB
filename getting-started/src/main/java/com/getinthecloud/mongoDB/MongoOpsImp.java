@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
+import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Filters.gt;
 import static java.util.Arrays.asList;
@@ -77,6 +78,14 @@ public class MongoOpsImp implements MongoOps {
         System.out.println("Query documents by fields using logical AND");
         FindIterable<Document> documents = mongoDB.getCollection(collectionName).find(
                 new Document("name", "La Rubia Restaurant").append("address.zipcode", "11385"));
+        documents.forEach((Block<Document>) System.out::println);
+    }
+
+    @Override
+    public void queryDocumentsByFieldWithLogialANDwithFilters(String collectionName, MongoDatabase mongoDB) {
+        System.out.println("Query documents by fields using logical AND with Filters");
+        FindIterable<Document> documents = mongoDB.getCollection(collectionName).find(and(eq("name", "La Rubia Restaurant"),
+                eq("address.zipcode", "11385")));
         documents.forEach((Block<Document>) System.out::println);
     }
 
