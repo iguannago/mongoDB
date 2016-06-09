@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 import static com.mongodb.client.model.Filters.*;
+import static com.mongodb.client.model.Sorts.ascending;
 import static java.util.Arrays.asList;
 
 /**
@@ -92,6 +93,14 @@ public class MongoOpsImp implements MongoOps {
         System.out.println("Query documents by fields using logical OR with Filters");
         FindIterable<Document> documents = mongoDB.getCollection(collectionName).find(or(eq("name", "La Rubia Restaurant"),
                 eq("address.zipcode", "11385")));
+        documents.forEach((Block<Document>) System.out::println);
+    }
+
+    @Override
+    public void sortQueryResult(String collectionName, MongoDatabase mongoDB) {
+        System.out.println("Sort Query Result");
+        FindIterable<Document> documents = mongoDB.getCollection(collectionName).
+                find().sort(ascending("borough", "address.zipcode"));
         documents.forEach((Block<Document>) System.out::println);
     }
 

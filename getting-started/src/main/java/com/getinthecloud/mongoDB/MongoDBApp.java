@@ -15,7 +15,7 @@ public class MongoDBApp {
         MongoOps mongoOps = new MongoOpsImp();
 
         MongoDatabase mongoDB = mongoOps.connectToDB(dbName);
-        mongoOps.queryDocumentsByFieldWithLogicalORWithFilters(collectionName, mongoDB);
+        mongoOps.sortQueryResult(collectionName, mongoDB);
 
     }
 

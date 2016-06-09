@@ -23,4 +23,5 @@ public interface MongoOps {
     void queryDocumentsByFieldWithLogialAND(String collectionName, MongoDatabase mongoDB);
     void queryDocumentsByFieldWithLogicalANDwithFilters(String collectionName, MongoDatabase mongoDB);
     void queryDocumentsByFieldWithLogicalORWithFilters(String collectionName, MongoDatabase mongoDB);
+    void sortQueryResult(String collectionName, MongoDatabase mongoDB);
 }
