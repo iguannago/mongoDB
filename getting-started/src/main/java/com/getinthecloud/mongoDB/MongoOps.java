@@ -14,4 +14,10 @@ public interface MongoOps {
     void addItem(MongoDatabase db, String collectionName, Document document);
     Document createDocument() throws ParseException;
     FindIterable<Document> findAllDocumentsInCollection(MongoDatabase mongoDatabase, String collectionName);
+    void FindDocumentsFilteringForAField(String collectionName, MongoDatabase mongoDB);
+    void AnotherWayToFindDocumentFilteringForAField(String collectionName, MongoDatabase mongoDB);
+    void QueryByAFieldInAnEmbeddedDocument(String collectionName, MongoDatabase mongoDB);
+    void QueryByAFieldInAnEmbeddedDocumentUsingFilters(String collectionName, MongoDatabase mongoDB);
+    void QueryByAFieldInAnArray(String collectionName, MongoDatabase mongoDB);
+    void QueryFieldByAValueGreaterThan(String collectionName, MongoDatabase mongoDB);
 }
