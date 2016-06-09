@@ -8,6 +8,7 @@ import org.bson.Document;
 import java.text.ParseException;
 
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.gt;
 
 /**
  * Created by davicres on 08/03/2016.
@@ -28,9 +29,14 @@ public class MongoDBApp {
 //        QueryByAFieldInAnEmbeddedDocument(collectionName, mongoDB);
 //        QueryByAFieldInAnEmbeddedDocumentUsingFilters(collectionName, mongoDB);
 //        QueryByAFieldInAnArray(collectionName, mongoDB);
+//        QueryFieldByAValueGreaterThan(collectionName, mongoDB);
 
+    }
 
-
+    private static void QueryFieldByAValueGreaterThan(String collectionName, MongoDatabase mongoDB) {
+        System.out.println("query docuement by a field with value grater than");
+        FindIterable<Document> documents = mongoDB.getCollection(collectionName).find(gt("grades.score", 60));
+        documents.forEach((Block<Document>) System.out::println);
     }
 
     private static void QueryByAFieldInAnArray(String collectionName, MongoDatabase mongoDB) {
